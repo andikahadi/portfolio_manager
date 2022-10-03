@@ -116,3 +116,10 @@ display: inline-block;
 background-repeat: no-repeat;
 background-size: contain;
 }
+
+/* css for chart */
+
+.chart-container{
+  width: 70%;
+  margin:1em auto;
+}

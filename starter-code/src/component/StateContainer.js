@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Manage from "./Manage";
+import Overview from "./Overview";
 
 const StateContainer = () => {
   const [holdings, setHoldings] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [totalValue, setTotalValue] = useState(0);
 
   const [temp, setTemp] = useState(0);
+
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < holdings.length; i++) {
+      sum = sum + holdings[i].value;
+    }
+    setTotalValue(sum);
+  }, [holdings]);
 
   useEffect(() => {
     setInterval(() => {
@@ -29,7 +39,7 @@ const StateContainer = () => {
       const data1 = await res1.json();
       const data2 = await res2.json();
 
-      const nameRemoveInc = data1.name.slice(0, -4);
+      const nameRemoveInc = data1.name.slice(0, -3);
       const twoDecUnrealizedGain =
         Math.round(
           parseInt(stateInput.position) *
@@ -50,12 +60,11 @@ const StateContainer = () => {
         value: twoDecValue,
         unrealizedGain: twoDecUnrealizedGain,
         unrealizedGainPct:
-          (Math.round(
+          Math.round(
             (twoDecUnrealizedGain / (stateInput.position * stateInput.cost)) *
-              1000
-          ) /
-            1000) *
-          100,
+              100 *
+              100
+          ) / 100,
       };
 
       console.log(data2);
@@ -72,7 +81,7 @@ const StateContainer = () => {
       console.log("refreshing item");
       const urlInfo =
         "https://finnhub.io/api/v1/stock/profile2?symbol=" +
-        d.symbol +
+        d.symbol.toUpperCase() +
         "&token=ccprl9aad3idf7jqketgccprl9aad3idf7jqkeu0";
 
       const urlPrice =
@@ -114,6 +123,8 @@ const StateContainer = () => {
         handleUpdateEntry={handleUpdateEntry}
         handleDeleteEntry={handleDeleteEntry}
       />
+      {JSON.stringify(totalValue)}
+      <Overview holdings={holdings} totalValue={totalValue} />
     </>
   );
 };

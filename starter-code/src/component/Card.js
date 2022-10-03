@@ -26,10 +26,10 @@ const Card = (props) => {
       value: Math.round(parseInt(position) * props.d.price * 100) / 100,
       unrealizedGain: twoDecUnrealizedGain,
       unrealizedGainPct:
-        (Math.round((twoDecUnrealizedGain / (position * cost)) * 1000) / 1000) *
-        100,
+        Math.round(
+          ((position * (props.d.price - cost)) / (position * cost)) * 100 * 100
+        ) / 100,
     };
-
     props.handleUpdateEntry(updatedEntry, props.index);
   };
 
