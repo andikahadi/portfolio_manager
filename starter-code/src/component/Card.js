@@ -30,7 +30,7 @@ const Card = (props) => {
         100,
     };
 
-    props.handleUpdateEntry(props.index, updatedEntry);
+    props.handleUpdateEntry(updatedEntry, props.index);
   };
 
   const handleRemove = () => {

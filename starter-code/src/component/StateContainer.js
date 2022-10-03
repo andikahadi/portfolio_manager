@@ -12,7 +12,7 @@ const StateContainer = () => {
   useEffect(() => {
     setInterval(() => {
       setTemp((prevTemp) => prevTemp + 1);
-    }, 60000);
+    }, 30000);
   }, []);
 
   const fetchInfo = async (url1, url2, stateInput, changeOutFn, signal) => {
@@ -67,6 +67,23 @@ const StateContainer = () => {
     setIsLoading(false); // turn off loading animation
   };
 
+  useEffect(() => {
+    holdings.map((d, i) => {
+      console.log("refreshing item");
+      const urlInfo =
+        "https://finnhub.io/api/v1/stock/profile2?symbol=" +
+        d.symbol +
+        "&token=ccprl9aad3idf7jqketgccprl9aad3idf7jqkeu0";
+
+      const urlPrice =
+        "https://finnhub.io/api/v1/quote?symbol=" +
+        d.symbol.toUpperCase() +
+        "&token=ccprl9aad3idf7jqketgccprl9aad3idf7jqkeu0";
+
+      fetchInfo(urlInfo, urlPrice, d, handleUpdateEntry);
+    });
+  }, [temp]);
+
   const addHoldings = (input) => {
     setHoldings((prevState) => [...prevState, input]);
   };
@@ -79,7 +96,7 @@ const StateContainer = () => {
     });
   };
 
-  const handleUpdateEntry = (index, updatedItem) => {
+  const handleUpdateEntry = (updatedItem, index) => {
     setHoldings((prevEntry) => {
       const arr = [...prevEntry];
       arr[index] = updatedItem;
