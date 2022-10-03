@@ -1,10 +1,11 @@
 import React from "react";
+import StateContainer from "./component/StateContainer";
 
 function App() {
   return (
-    <div>
-      <h2>GA SEI-39</h2>
-    </div>
+    <>
+      <StateContainer />
+    </>
   );
 }
 

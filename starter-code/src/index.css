@@ -5,11 +5,12 @@
 }
 
 html {
-  font-family: "Oxygen", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   margin: 0;
+  max-width: 500px;
   background-color: whitesmoke;
 }
 
@@ -19,4 +20,99 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.manageContainer {
+  width: 100%;
+  min-height: 652px;
+  padding: 1em;
+  background-color: #f7f8fb;
+}
+/* 
+css for form */
+.formRow,
+.formButton{
+  margin: 1em;
+}
+
+.formCol {
+  display: inline-block;
+  width: 50%;
+}
+
+.formButton {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+.formButton button{
+  margin:0;
+}
+
+/* CSS for card */
+.card-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 5em;
+  padding: 0.7em;
+  border: 0.5px solid #f7f8fb;
+  border-radius: 3px;
+  background-color: #ffffff;
+
+  font-size: 0.8em;
+}
+
+.info-container{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: space-evenly;
+  
+}
+
+.logo-container{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+
+.logo-container img{
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%
+}
+
+.gain-container{
+  font-size: 0.8em;
+  
+}
+
+.gain-positive {
+  color:#397566;
+}
+
+.gain-negative {
+  color: #b21e20
+}
+
+
+
+.icon-positive{
+  background-image: url("./icon/triangle-16.png");
+}
+.icon-negative{
+  background-image: url("./icon/triangle-red.png")
+}
+
+
+.icon{
+height: 8px;
+width: 8px;
+display: inline-block;
+background-repeat: no-repeat;
+background-size: contain;
 }
