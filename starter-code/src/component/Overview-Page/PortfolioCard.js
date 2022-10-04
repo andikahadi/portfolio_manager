@@ -12,15 +12,15 @@ const PortfolioCard = (props) => {
         ></div>
         <img src={props.d.logo} />
       </div>
-      <div className="info-container">
+      <div className="name-container">
         <label>{props.d.symbol} </label>
-        <label>{props.d.name}</label>
+        <label className="company-name">{props.d.name}</label>
       </div>
       <div className="info-container">
         <label>{stockWeight}%</label>
       </div>
-      <div className="info-container">
-        <div>
+      <div className="value-container">
+        <div className="value">
           <label>${props.d.value} </label>
         </div>
         {props.d.unrealizedGain >= 0 ? (

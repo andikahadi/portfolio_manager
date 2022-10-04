@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  max-width: 500px;
+  max-width: 800px;
   background-color: whitesmoke;
 }
 
@@ -26,6 +26,7 @@ body {
 .overview-container{
   width: 100%;
   min-height: 100vh;
+  min-width: 100vw;
   padding: 1em;
   background-color: #f7f8fb;
 }
@@ -67,7 +68,8 @@ css for form */
 
 .info-container,
 .button-container,
-.name-container{
+.name-container,
+.value-container{
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -75,8 +77,18 @@ css for form */
   
 }
 
+.value-container{
+  width: 30%;
+}
+
+.value{
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
 .name-container{
-  width: 25%
+  width: 25%;
+  font-size: 1.2em;
 }
 
 .company-name{

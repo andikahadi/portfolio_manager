@@ -49,11 +49,11 @@ const Card = (props) => {
           <label className="company-name">{props.d.name}</label>
         </div>
         <div className="info-container">
-          <label>{props.d.position} shares</label>
+          <label>{props.d.position} s.</label>
           <label>${props.d.cost}</label>
         </div>
-        <div className="info-container">
-          <div>
+        <div className="value-container">
+          <div className="value">
             <label>${props.d.value} </label>
           </div>
           {props.d.unrealizedGain >= 0 ? (
@@ -99,8 +99,8 @@ const Card = (props) => {
           />
           <input value={cost} type="number" onChange={handleCostChange} />
         </div>
-        <div className="info-container">
-          <div>
+        <div className="value-container">
+          <div className="value">
             <label>${props.d.value} </label>
           </div>
           {props.d.unrealizedGain >= 0 ? (
