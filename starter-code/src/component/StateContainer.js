@@ -65,6 +65,7 @@ const StateContainer = () => {
               100 *
               100
           ) / 100,
+        color: stateInput.color,
       };
 
       console.log(data2);
@@ -123,7 +124,7 @@ const StateContainer = () => {
         handleUpdateEntry={handleUpdateEntry}
         handleDeleteEntry={handleDeleteEntry}
       />
-      {JSON.stringify(totalValue)}
+      {console.log(holdings)}
       <Overview holdings={holdings} totalValue={totalValue} />
     </>
   );

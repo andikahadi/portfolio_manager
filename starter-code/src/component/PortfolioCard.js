@@ -6,6 +6,10 @@ const PortfolioCard = (props) => {
   return (
     <div className="card-container" id={props.index}>
       <div className="logo-container">
+        <div
+          className="card-color"
+          style={{ backgroundColor: props.d.color }}
+        ></div>
         <img src={props.d.logo} />
       </div>
       <div className="info-container">

@@ -4,7 +4,7 @@ import Portfolio from "./Portfolio";
 
 const Overview = (props) => {
   return (
-    <div>
+    <div className="overview-container">
       <h2>MyPortfolio</h2>
       <Hero holdings={props.holdings} totalValue={props.totalValue} />
       <Portfolio holdings={props.holdings} totalValue={props.totalValue} />

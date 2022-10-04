@@ -23,6 +23,7 @@ const Form = (props) => {
       symbol: symbol,
       position: position,
       cost: cost,
+      color: "#" + Math.floor(Math.random() * 16777215).toString(16),
     };
 
     props.handleSubmit(newHolding);

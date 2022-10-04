@@ -22,6 +22,7 @@ const Card = (props) => {
     const updatedEntry = {
       ...props.d,
       position: position,
+      
       cost: cost,
       value: Math.round(parseInt(position) * props.d.price * 100) / 100,
       unrealizedGain: twoDecUnrealizedGain,
