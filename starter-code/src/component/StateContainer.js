@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Manage from "./Manage";
-import Overview from "./Overview";
+import Manage from "./Manage-Page/Manage";
+import Overview from "./Overview-Page/Overview";
 
 const StateContainer = () => {
   const [holdings, setHoldings] = useState([]);
