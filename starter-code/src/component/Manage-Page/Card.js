@@ -22,7 +22,7 @@ const Card = (props) => {
     const updatedEntry = {
       ...props.d,
       position: position,
-      
+
       cost: cost,
       value: Math.round(parseInt(position) * props.d.price * 100) / 100,
       unrealizedGain: twoDecUnrealizedGain,
@@ -44,9 +44,9 @@ const Card = (props) => {
         <div className="logo-container">
           <img src={props.d.logo} />
         </div>
-        <div className="info-container">
+        <div className="name-container">
           <label>{props.d.symbol} </label>
-          <label>{props.d.name}</label>
+          <label className="company-name">{props.d.name}</label>
         </div>
         <div className="info-container">
           <label>{props.d.position} shares</label>
@@ -70,7 +70,7 @@ const Card = (props) => {
             </div>
           )}
         </div>
-        <div className="info-container">
+        <div className="button-container">
           <button type="submit" onClick={handleUpdate}>
             Update
           </button>
@@ -87,9 +87,9 @@ const Card = (props) => {
         <div className="logo-container">
           <img src={props.d.logo} />
         </div>
-        <div className="info-container">
+        <div className="name-container ">
           <label>{props.d.symbol} </label>
-          <label>{props.d.name}</label>
+          <label className="company-name">{props.d.name}</label>
         </div>
         <div className="info-container">
           <input
@@ -117,7 +117,7 @@ const Card = (props) => {
             </div>
           )}
         </div>
-        <div className="info-container">
+        <div className="button-container">
           <button type="submit" onClick={handleUpdate}>
             Update
           </button>

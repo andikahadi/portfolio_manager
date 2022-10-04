@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Manage from "./Manage-Page/Manage";
 import Overview from "./Overview-Page/Overview";
-
+import NavBar from "./NavBar";
+import { Route, Routes, Navigate, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 const StateContainer = () => {
-  const [holdings, setHoldings] = useState([]);
+  const [holdings, setHoldings] = useState(
+    JSON.parse(window.localStorage.getItem("initHolding"))
+  );
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +26,7 @@ const StateContainer = () => {
   useEffect(() => {
     setInterval(() => {
       setTemp((prevTemp) => prevTemp + 1);
-    }, 30000);
+    }, 5000);
   }, []);
 
   const fetchInfo = async (url1, url2, stateInput, changeOutFn, signal) => {
@@ -92,6 +96,10 @@ const StateContainer = () => {
 
       fetchInfo(urlInfo, urlPrice, d, handleUpdateEntry);
     });
+
+    window.localStorage.setItem("initHolding", JSON.stringify(holdings));
+
+    console.log(JSON.parse(window.localStorage.getItem("initHolding")));
   }, [temp]);
 
   const addHoldings = (input) => {
@@ -116,16 +124,26 @@ const StateContainer = () => {
 
   return (
     <>
-      {console.log(temp)}
-      <Manage
-        fetchInfo={fetchInfo}
-        holdings={holdings}
-        addHoldings={addHoldings}
-        handleUpdateEntry={handleUpdateEntry}
-        handleDeleteEntry={handleDeleteEntry}
-      />
-      {console.log(holdings)}
-      <Overview holdings={holdings} totalValue={totalValue} />
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/overview" />
+        </Route>
+
+        <Route exact path="/overview">
+          <Overview holdings={holdings} totalValue={totalValue} />
+        </Route>
+
+        <Route exact path="/manage">
+          <Manage
+            fetchInfo={fetchInfo}
+            holdings={holdings}
+            addHoldings={addHoldings}
+            handleUpdateEntry={handleUpdateEntry}
+            handleDeleteEntry={handleDeleteEntry}
+          />
+        </Route>
+      </Switch>
+      <NavBar />
     </>
   );
 };

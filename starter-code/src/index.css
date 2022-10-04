@@ -22,9 +22,10 @@ body {
   align-items: center;
 }
 
-.manageContainer {
+.manageContainer,
+.overview-container{
   width: 100%;
-  min-height: 652px;
+  min-height: 100vh;
   padding: 1em;
   background-color: #f7f8fb;
 }
@@ -64,12 +65,35 @@ css for form */
   font-size: 0.8em;
 }
 
-.info-container{
+.info-container,
+.button-container,
+.name-container{
   display: flex;
   flex-direction: column;
   width: 20%;
   justify-content: space-evenly;
   
+}
+
+.name-container{
+  width: 25%
+}
+
+.company-name{
+  font-size: 0.8em;
+}
+
+.info-container label{
+  font-size: 1em;
+}
+
+.button-container{
+  width: 15%;
+}
+
+.button-container button{
+  font-family: 'Roboto';
+  font-size: 0.8em;
 }
 
 .logo-container{
@@ -132,6 +156,6 @@ css for overview */
 /* css for chart */
 
 .chart-container{
-  width: 70%;
+  width: 60%;
   margin:1em auto;
 }
