@@ -35,24 +35,36 @@ const Budget = (props) => {
 
   if (isUpdating === false) {
     return (
-      <div>
+      <div className="budget-container">
         <form>
-          <label>User monthly budget: </label>
-          <div>
-            <label>{props.userBudget}</label>
-            <button onClick={handleUpdate}>set budget</button>
+          <h3>Allocation for the next purchase: </h3>
+          <div className="budget-row">
+            <div>
+              <label>${props.userBudget}</label>
+            </div>
+            <div className="formButton">
+              <button onClick={handleUpdate}>Edit</button>
+            </div>
           </div>
         </form>
       </div>
     );
   } else {
     return (
-      <div>
+      <div className="budget-container">
         <form>
-          <label>User monthly budget: </label>
-          <div>
-            <input type="number" onChange={handleInputChange} value={budget} />
-            <button onClick={handleUpdate}>update</button>
+          <h3>Allocation for the next purchase: </h3>
+          <div className="budget-row">
+            <div>
+              <input
+                type="number"
+                onChange={handleInputChange}
+                value={budget}
+              />
+            </div>
+            <div className="formButton">
+              <button onClick={handleUpdate}>Update</button>
+            </div>
           </div>
         </form>
       </div>

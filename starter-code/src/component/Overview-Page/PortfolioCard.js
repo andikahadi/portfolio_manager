@@ -3,9 +3,7 @@ import React, { useState } from "react";
 const PortfolioCard = (props) => {
   const stockWeight =
     Math.round(
-      ((props.d.position * props.d.price) / props.totalValue.current) *
-        100 *
-        100
+      ((props.d.position * props.d.price) / props.totalValue) * 100 * 100
     ) / 100;
   return (
     <div className="card-container" id={props.index}>

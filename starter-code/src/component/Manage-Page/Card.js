@@ -55,8 +55,12 @@ const Card = (props) => {
           <label className="company-name">{props.d.name}</label>
         </div>
         <div className="info-container">
-          <label>{props.d.position} s.</label>
-          <label>${props.d.cost}</label>
+          <label>
+            {props.d.position} <span>shares</span>
+          </label>
+          <label>
+            ${props.d.cost} <span>/share</span>
+          </label>
           <label>{props.d.targetPct}%</label>
         </div>
         <div className="value-container">
@@ -99,24 +103,33 @@ const Card = (props) => {
           <label className="company-name">{props.d.name}</label>
         </div>
         <div className="info-container">
-          <input
-            value={position}
-            type="number"
-            onChange={handlePositionChange}
-            step="0.01"
-          />
-          <input
-            value={cost}
-            type="number"
-            onChange={handleCostChange}
-            step="0.01"
-          />
-          <input
-            value={targetPct}
-            type="number"
-            onChange={handleTargetPctChange}
-            step="0.01"
-          />
+          <div>
+            <input
+              value={position}
+              type="number"
+              onChange={handlePositionChange}
+              step="0.01"
+            />
+            <span>shares</span>
+          </div>
+          <div>
+            <input
+              value={cost}
+              type="number"
+              onChange={handleCostChange}
+              step="0.01"
+            />
+            <span>/share</span>
+          </div>
+          <div>
+            <input
+              value={targetPct}
+              type="number"
+              onChange={handleTargetPctChange}
+              step="0.01"
+            />
+            <span>%</span>
+          </div>
         </div>
         <div className="value-container">
           <div className="value">

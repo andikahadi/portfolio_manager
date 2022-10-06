@@ -59,7 +59,7 @@ const Recommendation = (props) => {
   //check total delta
 
   return (
-    <div>
+    <div className="recommendation-container">
       <Budget userBudget={userBudget} handleBudgetChange={handleBudgetChange} />
       <Buying
         userBudget={userBudget}

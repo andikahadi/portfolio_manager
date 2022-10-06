@@ -12,36 +12,15 @@ const StateContainer = () => {
   );
 
   // const [totalValue, setTotalValue] = useState(0);
-  let totalValue = useRef(0); // using useRef for totalValue to prevent rendering, since it actually only read data form holdings.
-  let totalDeltaPct = useRef(0);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   let isMounted = useRef(false);
 
-  const [temp, setTemp] = useState(0);
-
   useEffect(() => {
-    let sum = 0;
-    let deltaPctSum = 0;
-    for (let i = 0; i < holdings.length; i++) {
-      sum = sum + holdings[i].value;
-      if (holdings[i].isBuyingCandidate)
-        deltaPctSum = deltaPctSum + holdings[i].deltaPct;
-    }
-
-    totalValue.current = sum;
-    totalDeltaPct.current = deltaPctSum;
-
-    console.log(`totalValue update: ${totalValue.current}`);
-    console.log(`holding update: `);
-    console.log(holdings);
+    // console.log("storing data");
+    window.localStorage.setItem("initHolding", JSON.stringify(holdings));
   }, [holdings]);
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setTemp((prevTemp) => prevTemp + 1);
-  //   }, 60000);
-  // }, []);
 
   const fetchInfo = async (
     url1,
@@ -51,7 +30,6 @@ const StateContainer = () => {
     index,
     signal
   ) => {
-    console.log(`fetching stock ${stateInput.name}`);
     setIsLoading(true);
     setError(false);
 
@@ -71,12 +49,6 @@ const StateContainer = () => {
         100;
 
       const twoDecValue = Math.round(stateInput.position * data2.c * 100) / 100;
-      const deltaPct =
-        stateInput.targetPct -
-        Math.round(
-          ((stateInput.position * data2.c) / totalValue.current) * 100 * 100
-        ) /
-          100;
 
       const stockInfo = {
         symbol: stateInput.symbol.toUpperCase(),
@@ -134,7 +106,15 @@ const StateContainer = () => {
     };
   };
 
+  const [temp, setTemp] = useState(0);
   useEffect(() => {
+    setInterval(() => {
+      setTemp((prevTemp) => prevTemp + 1);
+    }, 60000);
+  }, []);
+
+  useEffect(() => {
+    console.log(temp);
     holdings.map((d, i) => {
       const urlInfo =
         "https://finnhub.io/api/v1/stock/profile2?symbol=" +
@@ -148,9 +128,7 @@ const StateContainer = () => {
 
       fetchInfo(urlInfo, urlPrice, d, handleUpdateEntry, i);
     });
-
-    window.localStorage.setItem("initHolding", JSON.stringify(holdings));
-  }, []);
+  }, [temp]);
 
   const addHoldings = (input) => {
     setHoldings((prevState) => [...prevState, input]);
@@ -180,7 +158,7 @@ const StateContainer = () => {
         </Route>
 
         <Route exact path="/overview">
-          <Overview holdings={holdings} totalValue={totalValue} />
+          <Overview holdings={holdings} />
         </Route>
 
         <Route exact path="/manage">
@@ -197,8 +175,6 @@ const StateContainer = () => {
           <Recommendation
             handleUpdateEntry={handleUpdateEntry}
             holdings={holdings}
-            totalDeltaPct={totalDeltaPct}
-            totalValue={totalValue.current}
             generateNextStockInfo={generateNextStockInfo}
           />
         </Route>

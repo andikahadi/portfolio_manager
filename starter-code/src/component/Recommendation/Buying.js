@@ -58,7 +58,9 @@ const Buying = (props) => {
           />
         );
       })}
-      <button onClick={handleBuyAll}>Buy All</button>
+      <div className="formButton">
+        <button onClick={handleBuyAll}>Buy All</button>
+      </div>
     </div>
   );
 };

@@ -23,12 +23,14 @@ body {
 }
 
 .manageContainer,
-.overview-container{
+.overview-container,
+.recommendation-container{
   width: 100%;
   min-height: 100vh;
   min-width: 100vw;
   padding: 1em;
   background-color: #f7f8fb;
+
 }
 /* 
 css for form */
@@ -79,6 +81,7 @@ css for form */
 
 .value-container{
   width: 30%;
+  text-align: right;
 }
 
 .value{
@@ -94,13 +97,25 @@ css for form */
 .company-name{
   font-size: 0.8em;
 }
-
+.info-container{
+  text-align: center;
+}
 .info-container label{
   font-size: 1em;
+}
+.info-container input{
+  width: 2.5em;
+  height: 1.3em;
+  border: 0.5px solid grey;
+}
+
+.info-container span{
+  font-size: 0.8em;
 }
 
 .button-container{
   width: 15%;
+  margin-left: 0.5em;
 }
 
 .button-container button{
@@ -170,4 +185,18 @@ css for overview */
 .chart-container{
   width: 60%;
   margin:1em auto;
+}
+
+/* css for budget */
+
+.budget-row{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.budget-row label, .budget-row input{
+  font-size: 1.5em;
+  width: 3em;
 }
