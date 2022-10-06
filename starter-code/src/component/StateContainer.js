@@ -86,10 +86,7 @@ const StateContainer = () => {
         cost: stateInput.cost,
         targetPct: stateInput.targetPct,
         price: data2.c,
-        value: twoDecValue,
-        deltaPct: deltaPct,
-
-        isBuyingCandidate: deltaPct >= 0.1 ? true : false, //assign true if delta percentage higher than 0.1%
+        value: Math.round(stateInput.position * data2.c * 100) / 100,
         unrealizedGain: twoDecUnrealizedGain,
         unrealizedGainPct:
           Math.round(
@@ -100,12 +97,41 @@ const StateContainer = () => {
         color: stateInput.color,
       };
 
+      const nextStockInfo = { ...stockInfo, position: stockInfo.position + 1 };
+
       handleUpdateEntry(stockInfo, index);
     } catch (err) {
       setError(err.message);
     }
 
     setIsLoading(false); // turn off loading animation
+  };
+
+  const generateNextStockInfo = (
+    prevHoldings,
+    nextPosition,
+    newPurchaseCost
+  ) => {
+    const newCost =
+      (prevHoldings.position * prevHoldings.cost +
+        (nextPosition - prevHoldings.position) * newPurchaseCost) /
+      nextPosition;
+    return {
+      ...prevHoldings,
+      position: nextPosition,
+      cost: newCost,
+
+      value: Math.round(nextPosition * prevHoldings.price * 100) / 100,
+      unrealizedGain:
+        Math.round(nextPosition * (prevHoldings.price - newCost) * 100) / 100,
+      unrealizedGainPct:
+        Math.round(
+          ((nextPosition * (prevHoldings.price - newCost)) /
+            (nextPosition * newCost)) *
+            100 *
+            100
+        ) / 100,
+    };
   };
 
   useEffect(() => {
@@ -173,6 +199,7 @@ const StateContainer = () => {
             holdings={holdings}
             totalDeltaPct={totalDeltaPct}
             totalValue={totalValue.current}
+            generateNextStockInfo={generateNextStockInfo}
           />
         </Route>
       </Switch>
