@@ -197,10 +197,36 @@ css for overview */
   width: 5px;
 }
 
+.hero{
+  width: 100%;
+  position: relative;
+}
+.total-value{
+  display:flex;
+  flex-direction: column;
+  width: 50%;
+  position: absolute;
+  top:40%;
+  left:25%;
+  text-align: center;
+}
+
+.total-value label{
+  font-size: 0.8em;
+}
+
+.total-value h3{
+  margin:0;
+}
+
+.total-value .icon{
+  height: 10px;
+  width:10px;
+}
 /* css for chart */
 
 .chart-container{
-  width: 60%;
+  width: 70%;
   margin:1em auto;
 }
 
