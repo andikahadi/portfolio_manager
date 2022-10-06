@@ -22,6 +22,7 @@ const Buying = (props) => {
         buyQty: buyQty,
         buyValue: Math.round(buyQty * props.holdingsDelta[i].price * 100) / 100,
       });
+      console.log(buyQty);
     }
   }
 
@@ -48,6 +49,7 @@ const Buying = (props) => {
 
   return (
     <div className="container">
+      <h4>Suggested purchase : </h4>
       {newDeltaArr.map((d, index) => {
         return (
           <BuyingCard
@@ -59,7 +61,7 @@ const Buying = (props) => {
         );
       })}
       <div className="formButton">
-        <button onClick={handleBuyAll}>Buy All</button>
+        <button onClick={handleBuyAll}>I've made the purchase</button>
       </div>
     </div>
   );

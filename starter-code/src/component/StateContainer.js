@@ -85,9 +85,12 @@ const StateContainer = () => {
     newPurchaseCost
   ) => {
     const newCost =
-      (prevHoldings.position * prevHoldings.cost +
-        (nextPosition - prevHoldings.position) * newPurchaseCost) /
-      nextPosition;
+      Math.round(
+        ((prevHoldings.position * prevHoldings.cost +
+          (nextPosition - prevHoldings.position) * newPurchaseCost) /
+          nextPosition) *
+          100
+      ) / 100;
     return {
       ...prevHoldings,
       position: nextPosition,

@@ -58,9 +58,7 @@ const Card = (props) => {
           <label>
             {props.d.position} <span>shares</span>
           </label>
-          <label>
-            ${props.d.cost} <span>/share</span>
-          </label>
+          <label>${props.d.cost}</label>
           <label>{props.d.targetPct}%</label>
         </div>
         <div className="value-container">
@@ -119,7 +117,6 @@ const Card = (props) => {
               onChange={handleCostChange}
               step="0.01"
             />
-            <span>/share</span>
           </div>
           <div>
             <input

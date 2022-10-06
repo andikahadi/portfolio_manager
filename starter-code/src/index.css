@@ -55,7 +55,7 @@ css for form */
 }
 
 /* CSS for card */
-.card-container{
+.card-container, .card-header-container{
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -68,10 +68,27 @@ css for form */
   font-size: 0.8em;
 }
 
+.card-header-container{
+  height:5em;
+  background-color: grey;
+}
+
+.card-header-container p{
+  margin: 0;
+  font-size:1em;
+}
+
+.card-header-container .logo-name-header{
+  width:40%;
+  text-align: left;
+  
+}
+
 .info-container,
 .button-container,
 .name-container,
-.value-container{
+.value-container,
+.logo-name-header{
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -104,7 +121,7 @@ css for form */
   font-size: 1em;
 }
 .info-container input{
-  width: 2.5em;
+  width: 3em;
   height: 1.3em;
   border: 0.5px solid grey;
 }

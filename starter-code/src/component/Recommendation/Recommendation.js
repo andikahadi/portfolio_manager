@@ -25,13 +25,13 @@ const Recommendation = (props) => {
   //create new array of delta percentage using above totalValue, and parent holding state
   for (let i = 0; i < props.holdings.length; i++) {
     const deltaPct =
-      props.holdings[i].targetPct -
       Math.round(
-        ((props.holdings[i].position * props.holdings[i].price) / totalValue) *
-          100 *
+        (props.holdings[i].targetPct -
+          ((props.holdings[i].position * props.holdings[i].price) /
+            totalValue) *
+            100) *
           100
-      ) /
-        100;
+      ) / 100;
     console.log(`for item ${i}, delta pct is ${deltaPct}`);
 
     holdingsDelta.push({
