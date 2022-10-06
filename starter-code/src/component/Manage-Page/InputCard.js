@@ -2,8 +2,24 @@ import React from "react";
 import Card from "./Card";
 
 const InputCard = (props) => {
+  let totalTargetPct = 0;
+
+  for (let i = 0; i < props.holdings.length; i++) {
+    totalTargetPct = totalTargetPct + props.holdings[i].targetPct;
+  }
+
+  let deltaToHundred = 100 - totalTargetPct;
+
+  const checkTotalPct = () => {
+    if (deltaToHundred > 0) {
+      return <p>Add {deltaToHundred}% to equal 100%</p>;
+    } else if (deltaToHundred < 0) {
+      return <p>Remove {Math.abs(deltaToHundred)}% to equal 100%</p>;
+    }
+  };
   return (
     <div className="container">
+      <div>{checkTotalPct()}</div>
       <div className="card-header-container">
         <div className="logo-name-header">
           <p>Stock Name</p>
