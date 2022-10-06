@@ -10,14 +10,13 @@ const Chart = (props) => {
   });
 
   const stockWeight = props.holdings.map((d, i) => {
-    return Math.round((d.value / props.totalValue) * 100 * 100) / 100;
+    return Math.round((d.value / props.totalValue.current) * 100 * 100) / 100;
   });
 
   const color = props.holdings.map((d, i) => {
     return d.color;
   });
 
-  console.log(stockWeight);
   const option = {
     plugins: {
       legend: { display: false },

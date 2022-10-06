@@ -1,35 +1,57 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import Manage from "./Manage-Page/Manage";
 import Overview from "./Overview-Page/Overview";
 import NavBar from "./NavBar";
 import { Route, Routes, Navigate, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import Recommendation from "./Recommendation/Recommendation";
+
 const StateContainer = () => {
   const [holdings, setHoldings] = useState(
-    JSON.parse(window.localStorage.getItem("initHolding"))
+    JSON.parse(window.localStorage.getItem("initHolding")) || []
   );
 
+  // const [totalValue, setTotalValue] = useState(0);
+  let totalValue = useRef(0); // using useRef for totalValue to prevent rendering, since it actually only read data form holdings.
+  let totalDeltaPct = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [totalValue, setTotalValue] = useState(0);
+  let isMounted = useRef(false);
 
   const [temp, setTemp] = useState(0);
 
   useEffect(() => {
     let sum = 0;
+    let deltaPctSum = 0;
     for (let i = 0; i < holdings.length; i++) {
       sum = sum + holdings[i].value;
+      if (holdings[i].isBuyingCandidate)
+        deltaPctSum = deltaPctSum + holdings[i].deltaPct;
     }
-    setTotalValue(sum);
+
+    totalValue.current = sum;
+    totalDeltaPct.current = deltaPctSum;
+
+    console.log(`totalValue update: ${totalValue.current}`);
+    console.log(`holding update: `);
+    console.log(holdings);
   }, [holdings]);
 
-  useEffect(() => {
-    setInterval(() => {
-      setTemp((prevTemp) => prevTemp + 1);
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setTemp((prevTemp) => prevTemp + 1);
+  //   }, 60000);
+  // }, []);
 
-  const fetchInfo = async (url1, url2, stateInput, changeOutFn, signal) => {
+  const fetchInfo = async (
+    url1,
+    url2,
+    stateInput,
+    handleUpdateEntry,
+    index,
+    signal
+  ) => {
+    console.log(`fetching stock ${stateInput.name}`);
     setIsLoading(true);
     setError(false);
 
@@ -45,14 +67,16 @@ const StateContainer = () => {
 
       const nameRemoveInc = data1.name.slice(0, -3);
       const twoDecUnrealizedGain =
-        Math.round(
-          parseInt(stateInput.position) *
-            (data2.c - parseInt(stateInput.cost)) *
-            100
-        ) / 100;
+        Math.round(stateInput.position * (data2.c - stateInput.cost) * 100) /
+        100;
 
-      const twoDecValue =
-        Math.round(parseInt(stateInput.position) * data2.c * 100) / 100;
+      const twoDecValue = Math.round(stateInput.position * data2.c * 100) / 100;
+      const deltaPct =
+        stateInput.targetPct -
+        Math.round(
+          ((stateInput.position * data2.c) / totalValue.current) * 100 * 100
+        ) /
+          100;
 
       const stockInfo = {
         symbol: stateInput.symbol.toUpperCase(),
@@ -60,8 +84,12 @@ const StateContainer = () => {
         logo: data1.logo,
         position: stateInput.position,
         cost: stateInput.cost,
+        targetPct: stateInput.targetPct,
         price: data2.c,
         value: twoDecValue,
+        deltaPct: deltaPct,
+
+        isBuyingCandidate: deltaPct >= 0.1 ? true : false, //assign true if delta percentage higher than 0.1%
         unrealizedGain: twoDecUnrealizedGain,
         unrealizedGainPct:
           Math.round(
@@ -72,8 +100,7 @@ const StateContainer = () => {
         color: stateInput.color,
       };
 
-      console.log(data2);
-      changeOutFn(stockInfo);
+      handleUpdateEntry(stockInfo, index);
     } catch (err) {
       setError(err.message);
     }
@@ -83,7 +110,6 @@ const StateContainer = () => {
 
   useEffect(() => {
     holdings.map((d, i) => {
-      console.log("refreshing item");
       const urlInfo =
         "https://finnhub.io/api/v1/stock/profile2?symbol=" +
         d.symbol.toUpperCase() +
@@ -94,13 +120,11 @@ const StateContainer = () => {
         d.symbol.toUpperCase() +
         "&token=ccprl9aad3idf7jqketgccprl9aad3idf7jqkeu0";
 
-      fetchInfo(urlInfo, urlPrice, d, handleUpdateEntry);
+      fetchInfo(urlInfo, urlPrice, d, handleUpdateEntry, i);
     });
 
     window.localStorage.setItem("initHolding", JSON.stringify(holdings));
-
-    console.log(JSON.parse(window.localStorage.getItem("initHolding")));
-  }, [temp]);
+  }, []);
 
   const addHoldings = (input) => {
     setHoldings((prevState) => [...prevState, input]);
@@ -140,6 +164,15 @@ const StateContainer = () => {
             addHoldings={addHoldings}
             handleUpdateEntry={handleUpdateEntry}
             handleDeleteEntry={handleDeleteEntry}
+          />
+        </Route>
+
+        <Route exact path="/recommendation">
+          <Recommendation
+            handleUpdateEntry={handleUpdateEntry}
+            holdings={holdings}
+            totalDeltaPct={totalDeltaPct}
+            totalValue={totalValue.current}
           />
         </Route>
       </Switch>

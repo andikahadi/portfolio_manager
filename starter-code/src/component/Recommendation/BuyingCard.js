@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-const PortfolioCard = (props) => {
-  const stockWeight =
-    Math.round(
-      ((props.d.position * props.d.price) / props.totalValue.current) *
-        100 *
-        100
-    ) / 100;
+const BuyingCard = (props) => {
   return (
     <div className="card-container" id={props.index}>
       <div className="logo-container">
-        <div
-          className="card-color"
-          style={{ backgroundColor: props.d.color }}
-        ></div>
         <img src={props.d.logo} />
       </div>
       <div className="name-container">
@@ -21,11 +11,12 @@ const PortfolioCard = (props) => {
         <label className="company-name">{props.d.name}</label>
       </div>
       <div className="info-container">
-        <label>
-          {stockWeight}% / {props.d.targetPct}%
-        </label>
+        <label>{props.d.buyQty} shares</label>
       </div>
-      <div className="value-container">
+      <div className="info-container">
+        <label>${props.d.buyValue}</label>
+      </div>
+      {/* <div className="value-container">
         <div className="value">
           <label>${props.d.value} </label>
         </div>
@@ -42,9 +33,9 @@ const PortfolioCard = (props) => {
             <label>{Math.abs(props.d.unrealizedGainPct)}% </label>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default PortfolioCard;
+export default BuyingCard;

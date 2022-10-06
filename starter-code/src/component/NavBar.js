@@ -30,6 +30,14 @@ const NavBar = () => {
               Manage
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className={(navData) => (navData.isActive ? styles.active : "")}
+              to="/recommendation"
+            >
+              Buying
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

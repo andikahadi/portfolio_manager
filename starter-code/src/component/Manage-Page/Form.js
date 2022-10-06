@@ -4,6 +4,7 @@ const Form = (props) => {
   const [symbol, setSymbol] = useState("");
   const [position, setPosition] = useState("");
   const [cost, setCost] = useState("");
+  const [targetPct, setTargetPct] = useState("");
 
   const handleSymbolChange = (event) => {
     setSymbol(event.target.value);
@@ -17,12 +18,17 @@ const Form = (props) => {
     setCost(event.target.value);
   };
 
+  const handleTargetPctChange = (event) => {
+    setTargetPct(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const newHolding = {
       symbol: symbol,
-      position: position,
-      cost: cost,
+      position: parseFloat(position),
+      cost: parseFloat(cost),
+      targetPct: parseFloat(targetPct),
       color: "#" + Math.floor(Math.random() * 16777215).toString(16),
     };
 
@@ -30,6 +36,7 @@ const Form = (props) => {
     setSymbol("");
     setPosition("");
     setCost("");
+    setTargetPct("");
   };
 
   return (
@@ -59,6 +66,15 @@ const Form = (props) => {
             className="formCol"
             onChange={handleCostChange}
             value={cost}
+            type="number"
+          />
+        </div>
+        <div className="formRow">
+          <label className="formCol">Target %: </label>
+          <input
+            className="formCol"
+            onChange={handleTargetPctChange}
+            value={targetPct}
             type="number"
           />
         </div>

@@ -4,6 +4,7 @@ const Card = (props) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [position, setPosition] = useState(props.d.position);
   const [cost, setCost] = useState(props.d.cost);
+  const [targetPct, setTargetPct] = useState(props.d.targetPct);
 
   const handlePositionChange = (event) => {
     setPosition(event.target.value);
@@ -12,19 +13,24 @@ const Card = (props) => {
     setCost(event.target.value);
   };
 
+  const handleTargetPctChange = (event) => {
+    setTargetPct(event.target.value);
+  };
+
   const handleUpdate = () => {
     setIsUpdating(!isUpdating);
 
     const twoDecUnrealizedGain =
-      Math.round(parseInt(position) * (props.d.price - parseInt(cost)) * 100) /
-      100;
+      Math.round(
+        parseFloat(position) * (props.d.price - parseFloat(cost)) * 100
+      ) / 100;
 
     const updatedEntry = {
       ...props.d,
-      position: position,
-
-      cost: cost,
-      value: Math.round(parseInt(position) * props.d.price * 100) / 100,
+      position: parseFloat(position),
+      cost: parseFloat(cost),
+      targetPct: parseFloat(targetPct),
+      value: Math.round(parseFloat(position) * props.d.price * 100) / 100,
       unrealizedGain: twoDecUnrealizedGain,
       unrealizedGainPct:
         Math.round(
@@ -51,6 +57,7 @@ const Card = (props) => {
         <div className="info-container">
           <label>{props.d.position} s.</label>
           <label>${props.d.cost}</label>
+          <label>{props.d.targetPct}%</label>
         </div>
         <div className="value-container">
           <div className="value">
@@ -96,8 +103,20 @@ const Card = (props) => {
             value={position}
             type="number"
             onChange={handlePositionChange}
+            step="0.01"
           />
-          <input value={cost} type="number" onChange={handleCostChange} />
+          <input
+            value={cost}
+            type="number"
+            onChange={handleCostChange}
+            step="0.01"
+          />
+          <input
+            value={targetPct}
+            type="number"
+            onChange={handleTargetPctChange}
+            step="0.01"
+          />
         </div>
         <div className="value-container">
           <div className="value">

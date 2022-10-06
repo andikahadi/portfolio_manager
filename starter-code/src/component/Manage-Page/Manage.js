@@ -11,58 +11,6 @@ const Manage = (props) => {
 
   let isMounted = useRef(false);
 
-  // const fetchInfo = async (url1, url2, stateInput, changeOutFn, signal) => {
-  //   setIsLoading(true);
-  //   setError(false);
-
-  //   try {
-  //     const res1 = await fetch(url1, { signal: signal });
-  //     const res2 = await fetch(url2, { signal: signal });
-
-  //     if (res1.status !== 200 || res2.status !== 200) {
-  //       throw new Error("Something went wrong");
-  //     }
-  //     const data1 = await res1.json();
-  //     const data2 = await res2.json();
-
-  //     const nameRemoveInc = data1.name.slice(0, -4);
-  //     const twoDecUnrealizedGain =
-  //       Math.round(
-  //         parseInt(stateInput.position) *
-  //           (data2.c - parseInt(stateInput.cost)) *
-  //           100
-  //       ) / 100;
-
-  //     const twoDecValue =
-  //       Math.round(parseInt(stateInput.position) * data2.c * 100) / 100;
-
-  //     const stockInfo = {
-  //       symbol: stateInput.symbol.toUpperCase(),
-  //       name: nameRemoveInc,
-  //       logo: data1.logo,
-  //       position: stateInput.position,
-  //       cost: stateInput.cost,
-  //       price: data2.c,
-  //       value: twoDecValue,
-  //       unrealizedGain: twoDecUnrealizedGain,
-  //       unrealizedGainPct:
-  //         (Math.round(
-  //           (twoDecUnrealizedGain / (stateInput.position * stateInput.cost)) *
-  //             1000
-  //         ) /
-  //           1000) *
-  //         100,
-  //     };
-
-  //     console.log(data2);
-  //     changeOutFn(stockInfo);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false); // turn off loading animation
-  // };
-
   const handleSubmit = (input) => {
     setNewHolding(input);
   };
@@ -87,7 +35,7 @@ const Manage = (props) => {
         props.addHoldings,
         controller.signal
       );
-      console.log(urlPrice);
+
       return () => {
         controller.abort();
       };
