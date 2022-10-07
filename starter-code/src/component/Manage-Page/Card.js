@@ -65,7 +65,7 @@ const Card = (props) => {
           <label>${props.d.cost}</label> */}
           <label>{props.d.targetPct}%</label>
         </div>
-        <div className="value-container">
+        {/* <div className="value-container">
           <div className="value">
             <label>${props.d.value} </label>
           </div>
@@ -82,7 +82,7 @@ const Card = (props) => {
               <label>{Math.abs(props.d.unrealizedGainPct)}% </label>
             </div>
           )}
-        </div>
+        </div> */}
         <div className="button-container">
           <button type="submit" onClick={handleUpdate}>
             Update
@@ -147,7 +147,7 @@ const Card = (props) => {
             <span>%</span>
           </div>
         </div>
-        <div className="value-container">
+        {/* <div className="value-container">
           <div className="value">
             <label>${props.d.value} </label>
           </div>
@@ -164,7 +164,7 @@ const Card = (props) => {
               <label>{Math.abs(props.d.unrealizedGainPct)}% </label>
             </div>
           )}
-        </div>
+        </div> */}
         <div className="button-container">
           <button type="submit" onClick={handleUpdate}>
             Update

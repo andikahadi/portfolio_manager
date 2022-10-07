@@ -1,23 +1,6 @@
 import React, { useState } from "react";
 
 const Budget = (props) => {
-  // const [isBudgetUpdate, setIsBudgetUpdate] = useState(false);
-
-  // const handleClick = (event) => {
-  //   event.preventDefault();
-  //   setIsBudgetUpdate(!isBudgetUpdate);
-  // };
-  // return (
-  //   <div>
-  //     <form>
-  //       <label>User monthly budget: </label>
-  //       <label>{props.userBudget}</label>
-  //       <button onClick={handleClick}>set budget</button>
-  //     </form>
-  //     {console.log(isBudgetUpdate)}
-  //   </div>
-  // );
-
   const [budget, setBudget] = useState(props.userBudget);
   const [isUpdating, setIsUpdating] = useState(false);
 

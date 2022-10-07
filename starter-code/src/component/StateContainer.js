@@ -22,11 +22,13 @@ const StateContainer = () => {
     window.localStorage.setItem("initHolding", JSON.stringify(holdings));
   }, [holdings]);
 
+  ////////////// Fetch Function////////////////
+
   const fetchInfo = async (
-    url1,
-    url2,
-    stateInput,
-    handleUpdateEntry,
+    url1, //url for stock info
+    url2, //url for stock price
+    stateInput, //one of element in 'holdings' as this fetch is used in .map
+    handleUpdateEntry, //update holdings[index] based on fetched data
     index,
     signal
   ) => {
@@ -48,8 +50,6 @@ const StateContainer = () => {
         Math.round(stateInput.position * (data2.c - stateInput.cost) * 100) /
         100;
 
-      const twoDecValue = Math.round(stateInput.position * data2.c * 100) / 100;
-
       const stockInfo = {
         symbol: stateInput.symbol.toUpperCase(),
         name: nameRemoveInc,
@@ -68,8 +68,6 @@ const StateContainer = () => {
           ) / 100,
         color: stateInput.color,
       };
-
-      const nextStockInfo = { ...stockInfo, position: stockInfo.position + 1 };
 
       handleUpdateEntry(stockInfo, index);
     } catch (err) {
@@ -109,15 +107,16 @@ const StateContainer = () => {
     };
   };
 
+  /////////// Periodical Fetching ///////////////
   const [temp, setTemp] = useState(0);
   useEffect(() => {
     setInterval(() => {
       setTemp((prevTemp) => prevTemp + 1);
-    }, 60000);
+    }, 30000);
   }, []);
 
   useEffect(() => {
-    console.log(temp);
+    console.log(`re-fetching`);
     holdings.map((d, i) => {
       const urlInfo =
         "https://finnhub.io/api/v1/stock/profile2?symbol=" +

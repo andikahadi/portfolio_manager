@@ -14,7 +14,7 @@ const InputCard = (props) => {
     if (deltaToHundred > 0) {
       return <p>Add {deltaToHundred}% to equal 100%</p>;
     } else if (deltaToHundred < 0) {
-      return <p>Remove {Math.abs(deltaToHundred)}% to equal 100%</p>;
+      return <p>Reduce {Math.abs(deltaToHundred)}% to equal 100%</p>;
     }
   };
   return (
@@ -29,9 +29,9 @@ const InputCard = (props) => {
           <p>Cost basis</p> */}
           <p>Target %</p>
         </div>
-        <div className="value-container">
+        {/* <div className="value-container">
           <p>Value </p>
-        </div>
+        </div> */}
         <div className="button-container"></div>
       </div>
       {props.holdings.map((d, index) => {

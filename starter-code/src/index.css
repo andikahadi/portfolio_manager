@@ -92,14 +92,9 @@ css for form */
 
 .card-header-container p{
   margin: 0;
-  font-size:1em;
+  font-size:1.1em;
 }
 
-.card-header-container .logo-name-header{
-  width:48%;
-  text-align: left;
-  
-}
 
 .info-container,
 .button-container,
@@ -113,6 +108,13 @@ css for form */
   
 }
 
+.card-header-container .logo-name-header{
+  width:55%;
+  text-align: left;
+  
+}
+
+
 .value-container{
   width: 30%;
   text-align: right;
@@ -124,7 +126,7 @@ css for form */
 }
 
 .name-container{
-  width: 28%;
+  width: 35%;
   font-size: 1.2em;
 }
 
@@ -150,7 +152,8 @@ css for form */
 }
 
 .company-name input{
-  width: 3.5em;
+  width: 40%;
+  font-size: 1em;
 }
 .info-container{
   text-align: center;
@@ -159,7 +162,7 @@ css for form */
   font-size: 1em;
 }
 .info-container input{
-  width: 3em;
+  width: 2em;
   height: 1.3em;
   border: 0.5px solid grey;
 }
