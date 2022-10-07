@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const Form = (props) => {
   const [symbol, setSymbol] = useState("");
-  const [position, setPosition] = useState("");
-  const [cost, setCost] = useState("");
+  const [position, setPosition] = useState(0);
+  const [cost, setCost] = useState(0);
   const [targetPct, setTargetPct] = useState("");
 
   const handleSymbolChange = (event) => {
@@ -70,7 +70,7 @@ const Form = (props) => {
           />
         </div>
         <div className="formRow">
-          <label className="formCol">Target %: </label>
+          <label className="formCol">Target % in Portfolio: </label>
           <input
             className="formCol"
             onChange={handleTargetPctChange}

@@ -51,14 +51,18 @@ const Card = (props) => {
           <img src={props.d.logo} />
         </div>
         <div className="name-container">
-          <label>{props.d.symbol} </label>
-          <label className="company-name">{props.d.name}</label>
+          <label>
+            <span className="symbol">{props.d.symbol}</span> {props.d.name}
+          </label>
+          <label className="company-name">
+            {Math.round(props.d.position * 100) / 100} shares @ ${props.d.cost}
+          </label>
         </div>
         <div className="info-container">
-          <label>
-            {props.d.position} <span>shares</span>
+          {/* <label>
+            <span>shares</span>
           </label>
-          <label>${props.d.cost}</label>
+          <label>${props.d.cost}</label> */}
           <label>{props.d.targetPct}%</label>
         </div>
         <div className="value-container">
@@ -96,12 +100,27 @@ const Card = (props) => {
         <div className="logo-container">
           <img src={props.d.logo} />
         </div>
-        <div className="name-container ">
-          <label>{props.d.symbol} </label>
-          <label className="company-name">{props.d.name}</label>
+        <div className="name-container">
+          <label>
+            <span className="symbol">{props.d.symbol}</span> {props.d.name}
+          </label>
+          <label className="company-name">
+            <input
+              value={Math.round(position * 100) / 100}
+              type="number"
+              onChange={handlePositionChange}
+              step="0.01"
+            />{" "}
+            <input
+              value={cost}
+              type="number"
+              onChange={handleCostChange}
+              step="0.01"
+            />
+          </label>
         </div>
         <div className="info-container">
-          <div>
+          {/* <div>
             <input
               value={position}
               type="number"
@@ -117,7 +136,7 @@ const Card = (props) => {
               onChange={handleCostChange}
               step="0.01"
             />
-          </div>
+          </div> */}
           <div>
             <input
               value={targetPct}

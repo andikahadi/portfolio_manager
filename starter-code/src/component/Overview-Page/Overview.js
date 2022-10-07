@@ -16,8 +16,8 @@ const Overview = (props) => {
       <h2>MyPortfolio</h2>
       <Hero
         holdings={props.holdings}
-        totalValue={totalValue}
-        totalGain={totalGain}
+        totalValue={Math.round(totalValue * 100) / 100}
+        totalGain={Math.round(totalGain * 100) / 100}
       />
       <Portfolio holdings={props.holdings} totalValue={totalValue} />
     </div>

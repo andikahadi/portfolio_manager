@@ -26,7 +26,7 @@ body {
 .overview-container,
 .recommendation-container{
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   min-width: 100vw;
   padding: 1em;
   background-color: #f7f8fb;
@@ -55,6 +55,8 @@ css for form */
 }
 
 /* CSS for card */
+
+
 .card-container, .card-header-container{
   display: flex;
   justify-content: space-between;
@@ -69,8 +71,23 @@ css for form */
 }
 
 .card-header-container{
-  height:5em;
+  height:3em;
   background-color: grey;
+}
+
+.popup-container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  border: 0.5px solid grey;
+  border-radius: 3px;
+  background-color: orange;
+  font-size: 0.8em;
+}
+
+.popup-container p{
+  margin: 0.5em
 }
 
 .card-header-container p{
@@ -79,7 +96,7 @@ css for form */
 }
 
 .card-header-container .logo-name-header{
-  width:40%;
+  width:48%;
   text-align: left;
   
 }
@@ -107,12 +124,33 @@ css for form */
 }
 
 .name-container{
-  width: 25%;
+  width: 28%;
   font-size: 1.2em;
+}
+
+.name-container label{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name-container label:hover{
+ 
+  overflow: visible;
+  
+} 
+
+.name-container .symbol {
+  font-size: 0.8em;
+  opacity: 0.6;
 }
 
 .company-name{
   font-size: 0.8em;
+}
+
+.company-name input{
+  width: 3.5em;
 }
 .info-container{
   text-align: center;

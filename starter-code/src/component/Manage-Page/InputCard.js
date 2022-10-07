@@ -19,14 +19,14 @@ const InputCard = (props) => {
   };
   return (
     <div className="container">
-      <div>{checkTotalPct()}</div>
+      <div className="popup-container">{checkTotalPct()}</div>
       <div className="card-header-container">
         <div className="logo-name-header">
           <p>Stock Name</p>
         </div>
         <div className="info-container">
-          <p>Position</p>
-          <p>Cost basis</p>
+          {/* <p>Position</p>
+          <p>Cost basis</p> */}
           <p>Target %</p>
         </div>
         <div className="value-container">
