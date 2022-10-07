@@ -5,7 +5,7 @@ import Buying from "./Buying";
 //propping down holdings and update for buying
 const Recommendation = (props) => {
   const [userBudget, setUserBudget] = useState(
-    JSON.parse(window.localStorage.getItem("userBudget"))
+    JSON.parse(window.localStorage.getItem("userBudget") || 500)
   );
 
   const handleBudgetChange = (input) => {
