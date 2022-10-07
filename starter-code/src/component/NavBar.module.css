@@ -1,10 +1,9 @@
 .navbar {
   height: 4em;
   background-color:#12123d;
-  overflow: hidden;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  max-width: 400px;
 }
 
 .navbar nav {

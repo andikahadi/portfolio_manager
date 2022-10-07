@@ -10,10 +10,16 @@ html {
 
 body {
   margin: 0;
-  max-width: 800px;
   background-color: whitesmoke;
 }
 
+#root{
+  display:flex;
+  flex-direction: column;
+  min-height: 120vh;
+  max-width: 400px;
+ 
+}
 .centered {
   margin: 3rem auto;
   text-align: center;
@@ -26,8 +32,7 @@ body {
 .overview-container,
 .recommendation-container{
   width: 100%;
-  min-height: 120vh;
-  min-width: 100vw;
+  height: 120vh;
   padding: 1em;
   background-color: #f7f8fb;
 
