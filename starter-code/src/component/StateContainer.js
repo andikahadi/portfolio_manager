@@ -5,10 +5,11 @@ import NavBar from "./NavBar";
 import { Route, Routes, Navigate, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Recommendation from "./Recommendation/Recommendation";
+import { seedHolding } from "./Seed-Data/seed";
 
 const StateContainer = () => {
   const [holdings, setHoldings] = useState(
-    JSON.parse(window.localStorage.getItem("initHolding")) || []
+    JSON.parse(window.localStorage.getItem("initHolding")) || seedHolding
   );
 
   // const [totalValue, setTotalValue] = useState(0);

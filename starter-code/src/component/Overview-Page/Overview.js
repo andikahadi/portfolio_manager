@@ -10,7 +10,7 @@ const Overview = (props) => {
     totalValue = totalValue + props.holdings[i].value;
     totalGain = totalGain + props.holdings[i].unrealizedGain;
   }
-  console.log(totalValue);
+  // console.log(totalValue);
   return (
     <div className="overview-container">
       <h2>MyPortfolio</h2>
